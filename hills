@@ -1,0 +1,133 @@
+#include <iostream>
+using namespace std;
+void print_odd_Triangle(int n, int i)
+{
+    //odd Triangle in next line
+    for (int j = n * 2 - 1; j >= 2 * i; j--)
+    {
+        cout << "  ";
+    }
+    for (int k = 1; k <= 2 * i - 1; k++)
+    {
+        cout << "* ";
+    }
+}
+
+void print_Tree(int n, int l)
+{
+    for (int m = 1; m <= n; m++)
+    {
+        if (l == m || l + m == n + 1 || m == n / 2 + 1 || l == n / 2 + 1)
+        {
+            cout << "0 ";
+        }
+        else
+        {
+            cout << "  ";
+        }
+    }
+}
+
+int main()
+{
+    int n = 6;
+
+    //for printing hills
+
+    //this for loop used for print only 1st part of hills(i.e - 1st Triangle)
+    for (int i = 1; i <= n; i++)
+    {
+        for (int j = n; j > i; j--)
+        {
+            cout << "  ";
+        }
+        for (int k = 1; k <= 2 * i - 1; k++)
+        {
+            cout << "* ";
+        }
+        print_odd_Triangle(n, i);
+        print_odd_Triangle(n, i);
+        print_odd_Triangle(n, i);
+        print_odd_Triangle(n, i);
+        cout << "\n";
+    }
+
+    cout<<"\n\n\n";
+    // PRINTING HOME ....
+    for (int i = 1; i <= n; i++)
+    {
+        //1st triangle (LEFT)
+        for (int k = i; k <= n - 1; k++)
+        {
+            cout << "  ";
+        }
+        for (int j = 1; j <= i; j++)
+        {
+            cout << "0 ";
+        }
+
+        //roof top
+        for (int l = 1; l <= 3 * n; l++)
+        {
+            // if (i == 1 || i == n)
+            // {
+            //     cout << "# ";
+            // }
+            // else
+            // {
+            //     cout << "  ";
+            // }
+            cout << "0 ";
+        }
+
+        //2nd triangle (END/RIGHT)
+        for (int m = 1; m <= i; m++)
+        {
+            cout << "0 ";
+        }
+
+        cout << "\n";
+    }
+
+    //Home Wall (outer) / Below roof
+    for (int x = 1; x <= 2 * n; x++)
+    {
+        for (int z = 1; z <= n; z++)
+        {
+            cout << "  ";
+        }
+
+        //Program for Door
+        for (int y = 1; y <= 3 * n; y++)
+        {
+            if (x == 2 * n || y == 1 || y == 3 * n || y == n && x > 2 * n / 2 - 1 || y == 2 * n && x > 2 * n / 2 - 1 || x == (2 * n / 2) - 1 && y > n && y < 3 * n - n)
+            {
+                cout << "0 ";
+            }
+            else
+            {
+                cout << "  ";
+            }
+        }
+
+        //For Printing Coconut Tree
+        cout << "\t\t";
+        print_Tree(n, x);
+         cout << "\t\t";
+        print_Tree(n, x);
+
+
+        cout << "\n";
+    }
+
+    //For Printing Coconut Tree
+    // for (int l = 1; l <= 2 * n - 1; l++)
+    // {
+    //     //1st Tree
+    //     print_Tree(n, l);
+    //     cout << "\t\t";
+    //     //2nd Tree
+    //     print_Tree(n, l);
+    //     cout << "\n";
+    // }
+}
